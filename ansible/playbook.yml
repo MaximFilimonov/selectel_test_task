@@ -1,0 +1,11 @@
+---
+
+- hosts: k8s-test
+  become: true
+#  roles:
+#    - common
+
+- tasks:
+  - name: test
+    
+
