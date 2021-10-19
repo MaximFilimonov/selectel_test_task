@@ -22,8 +22,6 @@
       - docker-ce
       - docker-ce-cli
       - containerd.io
-  notify:
-    - docker status
 
 - name: Configure docker to use systemd instead of cgroupfs
   copy:
@@ -32,12 +30,5 @@
     owner: root
     group: root
     mode: '0644'
-#  notify:
-#    - docker restart
-
-- name: Restart docker daemon to apply systemd usage
-  service:
-    name: docker
-    daemon_reload: yes
-    state: restarted
-
+  notify:
+    - docker status

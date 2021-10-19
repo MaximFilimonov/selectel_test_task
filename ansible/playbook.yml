@@ -6,7 +6,6 @@
     - common
 
 - hosts: master
-  become: true
   roles:
     - k8s_master
 
