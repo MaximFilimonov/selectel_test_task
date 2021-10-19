@@ -1,4 +1,4 @@
-# Default values for mendhak-http-echo.
+# Default values for mendhak-http-https-echo.
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 
@@ -76,7 +76,7 @@ autoscaling:
   minReplicas: 2
   maxReplicas: 100
   targetCPUUtilizationPercentage: 80
-  targetMemoryUtilizationPercentage: 80
+  # targetMemoryUtilizationPercentage: 80
 
 nodeSelector: {}
 
