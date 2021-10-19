@@ -13,3 +13,7 @@
   become: true
   roles:
     - k8s_worker
+
+- hosts: master
+  roles:
+    - helm

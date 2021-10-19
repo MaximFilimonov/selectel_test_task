@@ -1,0 +1,27 @@
+---
+
+- name: Add an apt singing key for Helm
+  become: yes
+  apt_key: 
+    url: https://baltocdn.com/helm/signing.asc
+    state: present
+
+- name: Add apt repository for Helm
+  become: yes
+  apt_repository:
+    repo: deb https://baltocdn.com/helm/stable/debian/ all main
+    state: present
+    filename: helm-stable-debian.list
+
+- name: Install Helm
+  become: yes
+  apt:
+    name: helm
+    state: present
+    update_cache: yes
+
+- name: Deploy app chart
+  helm:
+    name: test
+    chart_ref: ""
+    release_namespace: default
