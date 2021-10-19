@@ -20,8 +20,42 @@
     state: present
     update_cache: yes
 
-- name: Deploy app chart
-  helm:
+- name: Copy chart archive
+  copy:
+    src: helm/mendhak-http-https-echo
+    dest: .
+
+- name: Remove chart
+  community.kubernetes.helm:
     name: test
-    chart_ref: ""
+    state: absent
+    wait: yes
     release_namespace: default
+
+- name: Deploy app chart
+  community.kubernetes.helm:
+    name: test
+    chart_ref: mendhak-http-https-echo
+    release_namespace: default
+
+- name: Apply MetalLB
+  command: >
+    kubectl apply -f
+    https://raw.githubusercontent.com/metallb/metallb/main/manifests/metallb.yaml
+
+- name: Copy MetalLB template config
+  template:
+    src: metalllb.j2.yml
+    dest: metalllb.yml
+    owner: ansible
+    group: ansible
+    mode: '0644'
+
+- name: Apply MetallLB config
+  command: >
+    kubectl apply -f metallb.yml 
+
+- name: Remove chart files
+  file:
+    path: ./mendhak-http-https-echo
+    state: absent

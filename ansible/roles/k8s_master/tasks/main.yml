@@ -75,7 +75,7 @@
     remote_src: yes
     owner: ansible
     group: ansible
-    mode: '0644'
+    mode: '0600'
 
 - name: Set up Flannel
   command: >

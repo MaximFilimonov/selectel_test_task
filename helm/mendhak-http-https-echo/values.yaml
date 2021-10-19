@@ -37,11 +37,12 @@ securityContext: {}
   # runAsUser: 1000
 
 service:
-  name: http-https-echo
   type: LoadBalancer
-  externalPort: 80
-  internalPort: 8008
-  port: 80
+  internalPortHTTP: 8008
+  internalPortHTTPS: 8443
+  externalPortHTTP: 80
+  externalPortHTTPS: 8443
+#  port: 80
 
 ingress:
   enabled: false
