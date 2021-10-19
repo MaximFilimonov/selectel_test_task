@@ -1,11 +1,16 @@
 ---
 
-- hosts: k8s-test
+- hosts: all
   become: true
-#  roles:
-#    - common
+  roles:
+    - common
 
-- tasks:
-  - name: test
-    
+- hosts: master
+  become: true
+  roles:
+    - k8s_master
 
+- hosts: workers
+  become: true
+  roles:
+    - k8s_worker
