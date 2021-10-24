@@ -6,7 +6,7 @@ This repo contains the solution of Selectel test task.
 #### Usage:
 Github runner builds helm package and deploys the app and k8s infrastructure to prod environment on each commit/pull_request to master, or if triggered manually.
 
-#### Cluster info:
+####  Credentials:
 domain-name: `flood-resident.tk`
 
 k8s-master:
@@ -20,7 +20,6 @@ k8s-worker-01:
   - root_pass: `l9tFBzn9N9oG`
   - user: `ansible`
   - user_pass: `123`
-
 
 #### Tests:
 - Basic Usage:
