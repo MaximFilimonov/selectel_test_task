@@ -1,4 +1,5 @@
 # Selectel test task
+![](https://github.com/MaximFilimonov/selectel_test_task/actions/workflows/ci-cd.yml/badge.svg)
 
 This repo contains the solution of Selectel test task.
 
