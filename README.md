@@ -1,8 +1,15 @@
+# Selectel test task
+
 This repo contains the solution of Selectel test task.
 
-TO DO:
-  - Understand infrastructure requirements
-  - Create required infrastructure manually
-  - Create Ansible automation to deploy the app
-  - Write docs
-  - Consider terragrunt automation 
+domain-name: flood-resident.tk
+k8s-master:
+  - ip: `31.184.218.184`
+  - root_pass: `5iRhXrYIY4ps`
+  - user: `ansible`
+  - user_pass: `123`
+k8s-worker-01-ip: 
+  - ip: `91.206.14.193`
+  - root_pass: `l9tFBzn9N9oG`
+  - user: `ansible`
+  - user_pass: `123`

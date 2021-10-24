@@ -2,4 +2,8 @@
 
 - include: users.yml
 
+- include: openshift.yml
+
 - include: docker.yml
+
+- include: k8s_common.yml

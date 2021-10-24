@@ -1,56 +1,10 @@
 ---
 
-- name: Remove swapfile from /etc/fstab
-  become: yes
-  mount:
-    name: "{{ item }}"
-    fstype: swap
-    state: absent
-  with_items:
-    - swap
-    - none
-
-- name: Disable swap
-  become: yes
-  command: swapoff -a
-  when: ansible_swaptotal_mb > 0
-
-- name: Add an apt signing key for Kubernetes
-  become: yes
-  apt_key:
-    url: https://packages.cloud.google.com/apt/doc/apt-key.gpg
-    state: present
-
-- name: Adding apt repository for Kubernetes
-  become: yes
-  apt_repository:
-    repo: deb https://apt.kubernetes.io/ kubernetes-xenial main
-    state: present
-    filename: kubernetes.list
-
-- name: Install Kubernetes binaries
-  become: yes 
-  apt:
-    name: "{{ packages }}"
-    state: present
-    update_cache: yes
-  vars:
-    packages:
-      - kubelet
-      - kubeadm
-      - kubectl
-
-- name: Restart kubelet
-  become: yes
-  service:
-    name: kubelet
-    daemon_reload: yes
-    state: restarted
-
-- name: Reset kubeadm if neccessary
-  become: yes
-  command: kubeadm reset --force
-  when: redeploy|default(true)|bool == true
+- name: Create dir to store project files
+  file:
+    path: '{{ project_dir }}'
+    state: directory
+    mode: '0755'
 
 - name: Initialize the Kubernetes cluster using kubeadm
   become: yes
@@ -67,7 +21,7 @@
     state: directory
     mode: '0755'
 
-- name: Copy config file
+- name: Copy admin.conf config file
   become: yes
   copy:
     src: /etc/kubernetes/admin.conf
@@ -77,10 +31,16 @@
     group: ansible
     mode: '0600'
 
-- name: Set up Flannel
-  command: >
-    kubectl apply -f
-    https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml
+- name: Download Flannel
+  get_url:
+    url: https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml
+    dest: '{{ project_dir }}/kube-flannel.yml'
+    mode: '0644'
+
+- name: Apply Flannel
+  community.kubernetes.k8s:
+    state: present
+    src: '{{ project_dir }}/kube-flannel.yml'
 
 - name: Generate join command
   command: kubeadm token create --print-join-command
@@ -90,3 +50,5 @@
   local_action: >
     copy content="{{ join_command.stdout_lines[0] }}"
     dest="./join-command"
+
+- include: metal_lb.yml

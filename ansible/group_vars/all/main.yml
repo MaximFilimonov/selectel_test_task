@@ -1,3 +1,4 @@
 ---
 
 redeploy: true
+project_dir: /home/ansible/task-dir
