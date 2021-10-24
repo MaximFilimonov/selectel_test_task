@@ -2,6 +2,12 @@
 
 This repo contains the solution of Selectel test task.
 
+#### Usage:
+  - Create python3 virtual environment and activate it
+  - Install packages from requirements.txt to your venv via: `$ python -m pip install requirements.txt`
+  - Run playbook: `$ ansible-playbook -i inventory/prod.ini playbook.yml`
+
+#### Cluster info:
 domain-name: flood-resident.tk
 k8s-master:
   - ip: `31.184.218.184`
