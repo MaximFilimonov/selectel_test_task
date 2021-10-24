@@ -23,9 +23,9 @@ jobs:
           ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY }}
           ssh_public_key: ${{ secrets.SSH_PUBLIC_KEY }}
         run: |
-          echo "$ssh_private_key" > ~/.ssh/id_rsa && \
-          echo "$ssh_public_key" > ~/.ssh/id_rsa.pub && \
-          ssh-add ~/.ssh/id_rsa
+          echo "$ssh_private_key" > id_rsa && \
+          echo "$ssh_public_key" > id_rsa.pub && \
+          ssh-add id_rsa
 
       - name: Create helm package
         run: cd helm && helm package mendhak-http-https-echo
