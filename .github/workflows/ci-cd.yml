@@ -26,11 +26,11 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: Create helm package
-        run: helm/helm package mendhak-http-https-echo
+        run: cd helm && helm package mendhak-http-https-echo
 
   deploy:
     runs-on: ubuntu-latest
     steps:
       - name: Deploy k8s
         run: |
-          ansible/ansible-playbook -i inventory/prod.ini playbook.yml
+          cd ansible && ansible-playbook -i inventory/prod.ini playbook.yml
