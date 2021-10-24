@@ -3,9 +3,7 @@
 This repo contains the solution of Selectel test task.
 
 #### Usage:
-  - Create python3 virtual environment and activate it
-  - Install packages from requirements.txt to your venv via: `$ python -m pip install -r requirements.txt`
-  - Run playbook: `$ ansible-playbook -i inventory/prod.ini playbook.yml`
+Github runner builds helm package and deploys the app to prod environment on each commit, pull_request to master, or if triggered manually.
 
 #### Cluster info:
 domain-name: `flood-resident.tk`
