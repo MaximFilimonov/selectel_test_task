@@ -35,6 +35,6 @@ jobs:
       - name: Create helm package
         run: cd helm && helm package mendhak-http-https-echo
 
-#      - name: Deploy k8s
-#        run: |
-#          cd ansible && ansible-playbook -i inventory/prod.ini playbook.yml
+      - name: Deploy k8s
+        run: |
+          cd ansible && ansible-playbook -i inventory/prod.ini playbook.yml
