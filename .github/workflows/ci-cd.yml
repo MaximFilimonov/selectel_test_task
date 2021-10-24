@@ -27,10 +27,6 @@ jobs:
           eval `ssh-agent -s` && \
           ssh-add id_rsa
 
-      - name: test
-        run: |
-          ls -la && pwd
-
       - name: Create helm package
         run: cd helm && helm package mendhak-http-https-echo
 
