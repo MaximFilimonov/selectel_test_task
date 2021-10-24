@@ -25,12 +25,12 @@ jobs:
         run: |
           echo "$ssh_private_key" > id_rsa && \
           echo "$ssh_public_key" > id_rsa.pub && ls -la
-          #eval `ssh-agent -s` && \
-          #ssh-add id_rsa
+#          eval `ssh-agent -s` && \
+#          ssh-add id_rsa
 
       - name: Create helm package
         run: cd helm && helm package mendhak-http-https-echo
 
-      - name: Deploy k8s
-        run: |
-          cd ansible && ansible-playbook -i inventory/prod.ini playbook.yml
+#      - name: Deploy k8s
+#        run: |
+#          cd ansible && ansible-playbook -i inventory/prod.ini playbook.yml
