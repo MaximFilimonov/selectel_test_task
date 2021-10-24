@@ -1,12 +1,5 @@
 ---
 
-- name: Create MetalLB namespace
-  community.kubernetes.k8s:
-    name: metallb-system
-    api_version: v1
-    kind: Namespace
-    state: present
-
 - name: Download MetalLB manifest to cluster
   get_url:
     url: https://raw.githubusercontent.com/metallb/metallb/v0.8/manifests/metallb.yaml
