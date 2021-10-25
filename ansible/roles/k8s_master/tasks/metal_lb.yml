@@ -5,7 +5,7 @@
 
 - name: Download MetalLB manifest to cluster
   get_url:
-    url: https://raw.githubusercontent.com/metallb/metallb/v0.7/manifests/metallb.yaml
+    url: https://raw.githubusercontent.com/metallb/metallb/v0.8/manifests/metallb.yaml
     dest: '{{ project_dir }}/metal_lb_manifest.yml'
     mode: '0644'
 
